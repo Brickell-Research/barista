@@ -1,0 +1,39 @@
+gleam.toml
+  8295f28091f977d8 2-7,9,12
+test/barista/explorer_test.gleam
+  8295f28091f977d8 1-7
+.gitignore
+  8295f28091f977d8 1-37
+src/barista/explorer.gleam
+  8295f28091f977d8 1-27
+.github/workflows/test.yml
+  8295f28091f977d8 1-46
+src/barista/guarantee.gleam
+  8295f28091f977d8 1-6,8-10,15-34
+README.md
+  8295f28091f977d8 1,3,5-8,12,14,16-19
+src/barista.gleam
+  8295f28091f977d8 1,5-28
+test/barista/guarantee_test.gleam
+  8295f28091f977d8 2-12,14-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.3",
+  "base_commit_sha": "6b9f1d7099209630c62ea10feae7e66635829c37",
+  "prompts": {
+    "8295f28091f977d8": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "24fab4ac-8901-4b26-b139-2861c56dc2e8",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "robertDurst <me@robdurst.com>",
+      "messages": [],
+      "total_additions": 1019,
+      "total_deletions": 479,
+      "accepted_lines": 577,
+      "overriden_lines": 3
+    }
+  }
+}
