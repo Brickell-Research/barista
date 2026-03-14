@@ -21,8 +21,9 @@ module Barista
 
     sig { params(hash: T::Hash[Symbol, T.untyped]).returns(Providers::Provider) }
     def self.parse_provider(hash)
+      provider_name = hash[:name]
       services = Array(hash[:services]).map do |s|
-        Providers::Service.new(name: s[:name], url: s[:url])
+        Providers::Service.new(provider_name: provider_name, name: s[:name], url: s[:url])
       end
 
       Providers::Provider.new(name: hash[:name], services: services)

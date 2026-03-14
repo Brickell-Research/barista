@@ -4,9 +4,9 @@ source "https://rubygems.org"
 
 ruby "4.0.1"
 
+gem "httparty"
 gem "sidekiq", "~> 7.3"
 gem "sidekiq-cron", "~> 2.0"
-gem "httparty"
 gem "sorbet-runtime"
 
 group :development, :test do
@@ -16,4 +16,5 @@ group :development, :test do
   gem "rubocop-sorbet", require: false
   gem "sorbet-static", require: false
   gem "tapioca", require: false
+  gem "webmock", "~> 3.24"
 end
