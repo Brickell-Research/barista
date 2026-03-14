@@ -1,0 +1,56 @@
+Gemfile
+  ac9286a59471ca57 1-11
+.claude/projects/-Users-rob-BrickellResearch-barista/memory/feedback_mise_soz.md
+  ac9286a59471ca57 1-11
+.ruby-version
+  ac9286a59471ca57 1
+.rspec
+  ac9286a59471ca57 1-3
+spec/barista_spec.rb
+  ac9286a59471ca57 1-9
+.github/workflows/test.yml
+  ac9286a59471ca57 1,5,7,10,14,16-20,22-23,25-26
+.gitignore
+  ac9286a59471ca57 2,28-30
+.claude/projects/-Users-rob-BrickellResearch-barista/memory/MEMORY.md
+  ac9286a59471ca57 1
+.rubocop.yml
+  ac9286a59471ca57 1-16
+spec/spec_helper.rb
+  ac9286a59471ca57 1-17
+lib/barista.rb
+  ac9286a59471ca57 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.10",
+  "base_commit_sha": "a182ed7c0f6b4950fc317a5df9a2213c7cafeb26",
+  "prompts": {
+    "1a5b7434b4bb9242": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c6e6d57e-e01e-4088-99ba-58ce95056f83",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "robertDurst <me@robdurst.com>",
+      "messages": [],
+      "total_additions": 1058,
+      "total_deletions": 11,
+      "accepted_lines": 1047,
+      "overriden_lines": 0
+    },
+    "ac9286a59471ca57": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1b5419d3-5b4d-400e-82f9-c0f8442c5db4",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "robertDurst <me@robdurst.com>",
+      "messages": [],
+      "total_additions": 99,
+      "total_deletions": 52,
+      "accepted_lines": 95,
+      "overriden_lines": 0
+    }
+  }
+}
