@@ -6,6 +6,7 @@ require_relative "barista/providers/provider"
 require_relative "barista/configuration"
 require_relative "barista/fetcher"
 require_relative "barista/synthesizer"
+require_relative "barista/caffeine_writer"
 require_relative "barista/workers/service_guarantee_explorer_worker"
 
 # Top-level module for the Barista project.
