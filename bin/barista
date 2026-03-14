@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "sidekiq"
+require "sidekiq-cron"
+
+require_relative "../lib/barista"
+
+redis_url = ENV.fetch("REDIS_URL", "redis://localhost:6379/0")
+
+Sidekiq.configure_server do |config|
+  config.redis = { url: redis_url }
+
+  config.on(:startup) do
+    schedule = YAML.load_file(File.expand_path("../config/schedule.yml", __dir__))
+    Sidekiq::Cron::Job.load_from_hash!(schedule)
+  end
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = { url: redis_url }
+end

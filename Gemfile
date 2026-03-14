@@ -4,6 +4,8 @@ source "https://rubygems.org"
 
 ruby "4.0.1"
 
+gem "sidekiq", "~> 7.3"
+gem "sidekiq-cron", "~> 2.0"
 gem "sorbet-runtime"
 
 group :development, :test do

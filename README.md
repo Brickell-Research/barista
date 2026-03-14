@@ -14,6 +14,17 @@ Every service you depend on publishes guarantees. Barista makes them machine-rea
 bundle exec rspec
 ```
 
+## Running Workers
+
+Start Redis, then boot Sidekiq:
+
+```sh
+redis-server &
+bundle exec sidekiq -C ./config/sidekiq.yml
+```
+
+Sidekiq connects to `REDIS_URL` (defaults to `redis://localhost:6379/0`). Cron schedules are loaded automatically on startup from `config/schedule.yml`.
+
 ## License
 
 GPL-3.0
