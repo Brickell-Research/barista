@@ -1,0 +1,16 @@
+providers:
+  - name: stripe
+    services:
+      - name: payments
+        url: https://docs.stripe.com/api
+      - name: billing
+        url: https://docs.stripe.com/billing
+
+  - name: aws
+    services:
+      - name: s3
+        url: https://aws.amazon.com/s3/sla/
+      - name: rds
+        url: https://aws.amazon.com/rds/sla/
+      - name: lambda
+        url: https://aws.amazon.com/lambda/sla/
