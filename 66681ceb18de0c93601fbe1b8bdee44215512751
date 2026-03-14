@@ -1,0 +1,58 @@
+spec/barista/workers/service_guarantee_explorer_worker_spec.rb
+  06795b4738a6a71a 6,18-29,31-34,36-37,39-44,48-60,62-64,66-68,70-75,77-80
+spec/barista/providers/service_spec.rb
+  06795b4738a6a71a 1-29
+lib/barista/providers/service.rb
+  06795b4738a6a71a 4-5,10,13-25
+Gemfile
+  06795b4738a6a71a 7,19
+lib/barista/workers/service_guarantee_explorer_worker.rb
+  06795b4738a6a71a 13,20-23,31-45,50-51,57-59
+lib/barista/configuration.rb
+  06795b4738a6a71a 24,26
+spec/barista/providers/provider_spec.rb
+  06795b4738a6a71a 1-21
+spec/barista/caffeine_writer_spec.rb
+  06795b4738a6a71a 1-26
+spec/barista/synthesizer_spec.rb
+  06795b4738a6a71a 1-24
+spec/barista/fetcher_spec.rb
+  06795b4738a6a71a 1-23
+spec/barista/configuration_spec.rb
+  06795b4738a6a71a 1-60
+spec/spec_helper.rb
+  06795b4738a6a71a 4-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.10",
+  "base_commit_sha": "66681ceb18de0c93601fbe1b8bdee44215512751",
+  "prompts": {
+    "06795b4738a6a71a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6d98d20c-d0b7-4e11-b728-8227d5133bdd",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "robertDurst <me@robdurst.com>",
+      "messages": [],
+      "total_additions": 370,
+      "total_deletions": 110,
+      "accepted_lines": 287,
+      "overriden_lines": 0
+    },
+    "ce3fc98b136efd92": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4a2bd984-c864-41dc-825f-6edc842040e0",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "robertDurst <me@robdurst.com>",
+      "messages": [],
+      "total_additions": 789,
+      "total_deletions": 0,
+      "accepted_lines": 789,
+      "overriden_lines": 0
+    }
+  }
+}
