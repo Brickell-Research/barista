@@ -1,0 +1,38 @@
+lib/barista/providers/provider.rb
+  06795b4738a6a71a 1-12
+lib/barista/providers/service.rb
+  06795b4738a6a71a 6-9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.10",
+  "base_commit_sha": "e9a578ae37725dbbd49874ff5d89f08e9c3dc302",
+  "prompts": {
+    "06795b4738a6a71a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6d98d20c-d0b7-4e11-b728-8227d5133bdd",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "robertDurst <me@robdurst.com>",
+      "messages": [],
+      "total_additions": 16,
+      "total_deletions": 13,
+      "accepted_lines": 16,
+      "overriden_lines": 0
+    },
+    "ce3fc98b136efd92": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4a2bd984-c864-41dc-825f-6edc842040e0",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "robertDurst <me@robdurst.com>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 0,
+      "overriden_lines": 0
+    }
+  }
+}
