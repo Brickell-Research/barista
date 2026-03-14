@@ -1,0 +1,35 @@
+Gemfile
+  ce3fc98b136efd92 7-8
+lib/barista/workers/service_guarantee_explorer_worker.rb
+  ce3fc98b136efd92 1-50
+bin/barista
+  ce3fc98b136efd92 1-23
+spec/barista/workers/service_guarantee_explorer_worker_spec.rb
+  ce3fc98b136efd92 1-39
+lib/barista.rb
+  ce3fc98b136efd92 8-9
+README.md
+  ce3fc98b136efd92 17-27
+config/sidekiq.yml
+  ce3fc98b136efd92 1-5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.10",
+  "base_commit_sha": "cc7868816fea8163f744492d237aaa7094581ac2",
+  "prompts": {
+    "ce3fc98b136efd92": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4a2bd984-c864-41dc-825f-6edc842040e0",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "robertDurst <me@robdurst.com>",
+      "messages": [],
+      "total_additions": 141,
+      "total_deletions": 1,
+      "accepted_lines": 132,
+      "overriden_lines": 5
+    }
+  }
+}
