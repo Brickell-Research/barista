@@ -28,3 +28,9 @@ Thumbs.db
 
 # Coverage
 /coverage/
+
+# Sorbet (auto-generated RBIs from srb init; can be regenerated)
+/sorbet/rbi/gems/
+/sorbet/rbi/hidden-definitions/
+/sorbet/rbi/sorbet-typed/
+/sorbet/rbi/todo.rbi
