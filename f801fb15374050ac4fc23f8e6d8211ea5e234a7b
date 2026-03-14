@@ -1,0 +1,25 @@
+lib/barista.rb
+  06795b4738a6a71a 7
+Gemfile
+  06795b4738a6a71a 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.10",
+  "base_commit_sha": "f801fb15374050ac4fc23f8e6d8211ea5e234a7b",
+  "prompts": {
+    "06795b4738a6a71a": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "6d98d20c-d0b7-4e11-b728-8227d5133bdd",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "robertDurst <me@robdurst.com>",
+      "messages": [],
+      "total_additions": 55,
+      "total_deletions": 34,
+      "accepted_lines": 21,
+      "overriden_lines": 0
+    }
+  }
+}
