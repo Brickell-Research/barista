@@ -1,0 +1,39 @@
+Makefile
+  9482abf8c589c898 1-12
+spec/spec_helper.rb
+  9482abf8c589c898 1
+spec/barista_spec.rb
+  9482abf8c589c898 1
+.rubocop.yml
+  9482abf8c589c898 3,18-27
+.github/workflows/test.yml
+  9482abf8c589c898 25-27
+sorbet/rbi/.rubocop.yml
+  9482abf8c589c898 1-2
+.gitignore
+  9482abf8c589c898 31-36
+Gemfile
+  9482abf8c589c898 7-8,13-15
+lib/barista.rb
+  9482abf8c589c898 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.10",
+  "base_commit_sha": "8fd1b327038acde8d4a80c65cf8f6abe47485b18",
+  "prompts": {
+    "9482abf8c589c898": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c48594de-24c3-470f-9a86-5ad3e56aef7c",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "robertDurst <me@robdurst.com>",
+      "messages": [],
+      "total_additions": 44,
+      "total_deletions": 2,
+      "accepted_lines": 42,
+      "overriden_lines": 0
+    }
+  }
+}
