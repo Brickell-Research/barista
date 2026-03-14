@@ -8,10 +8,10 @@ Every service you depend on publishes guarantees. Barista makes them machine-rea
 
 ## Development
 
+**Requires Ruby [4.0](https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/)**.
+
 ```sh
-gleam build
-gleam test
-gleam run
+bundle exec rspec
 ```
 
 ## License

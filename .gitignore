@@ -1,15 +1,5 @@
-# Build artifacts
-/build/
-/dist/
-/out/
-
 # Dependencies
-/deps*
-_build/*
-node_modules/
-package-lock.json
-package.json
-yarn.lock
+/vendor/bundle/
 
 # OS
 .DS_Store
@@ -35,3 +25,6 @@ Thumbs.db
 *.tmp
 *.temp
 *.bak
+
+# Coverage
+/coverage/

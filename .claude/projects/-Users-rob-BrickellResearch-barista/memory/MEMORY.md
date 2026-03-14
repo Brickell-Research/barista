@@ -1,0 +1,1 @@
+- [feedback_mise_soz.md](feedback_mise_soz.md) — Use mise for Ruby version management; Bash tool needs eval activation prefix

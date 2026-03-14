@@ -1,46 +1,26 @@
-name: Barista Test
+name: CI
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main]
   pull_request:
-    branches: [ main, master ]
+    branches: [main]
 
 jobs:
-  test-erlang:
-    name: Test Erlang Target
+  test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Setup BEAM (Erlang + Gleam + rebar3)
-      uses: erlef/setup-beam@v1
-      with:
-        otp-version: '27'
-        gleam-version: '1.14.0'
-        rebar3-version: '3.25.0'
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "4.0.1"
+          bundler-cache: true
 
-    - name: Cache Gleam dependencies
-      uses: actions/cache@v4
-      with:
-        path: |
-          ~/.cache/gleam
-          build
-        key: ${{ runner.os }}-gleam-erlang-${{ hashFiles('manifest.toml') }}
-        restore-keys: |
-          ${{ runner.os }}-gleam-erlang-
-          ${{ runner.os }}-gleam-
+      - name: Lint
+        run: bundle exec rubocop
 
-    - name: Download dependencies
-      run: gleam deps download
-
-    - name: Check formatting
-      run: gleam format --check
-
-    - name: Compile
-      run: gleam build
-
-    - name: Run tests
-      run: gleam test
+      - name: Test
+        run: bundle exec rspec
