@@ -70,5 +70,5 @@ func main() {
 		}
 	}
 
-	gitops.CommitAndPush(cfg.OutputDir, "update expectations")
+	gitops.CommitAndPush(cfg.OutputDir, "update expectations and changelogs")
 }

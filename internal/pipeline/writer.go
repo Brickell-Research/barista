@@ -63,6 +63,11 @@ func Write(outputDir string, i *Intermediate, content string) (WriteResult, erro
 		return WriteResult{Path: filePath, Status: StatusBlip}, nil
 
 	case unchanged:
+		logChangelog(changelogPath, changelogEntry{
+			Time:      time.Now().UTC(),
+			Status:    changelogUnchanged,
+			SourceURL: i.SourceURL,
+		})
 		return WriteResult{Path: filePath, Status: StatusUnchanged}, nil
 	}
 
