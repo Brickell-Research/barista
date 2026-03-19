@@ -2,8 +2,9 @@
 
 source "https://rubygems.org"
 
-ruby "3.4.2"
+ruby "3.4.1"
 
+gem "anthropic"
 gem "httparty"
 gem "sidekiq", "~> 7.3"
 gem "sidekiq-cron", "~> 2.0"
