@@ -1,6 +1,6 @@
 # barista
 
-<img src="images/barista_logo.png" alt="barista" width="120" />
+<p align="center"><img src="images/barista_logo.png" alt="barista" width="160" /></p>
 
 An automated explorer for discovering and structuring third-party service guarantees for the [Caffeine](https://caffeine-lang.run) ecosystem.
 
