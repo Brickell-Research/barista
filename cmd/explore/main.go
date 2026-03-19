@@ -8,6 +8,7 @@ import (
 
 	"barista/internal/config"
 	"barista/internal/fetcher"
+	"barista/internal/gitops"
 	"barista/internal/llm"
 	"barista/internal/pipeline"
 )
@@ -18,6 +19,8 @@ func main() {
 		slog.Error("failed to load config", "err", err)
 		os.Exit(1)
 	}
+
+	gitops.EnsureRepo(cfg.OutputDir, cfg.OutputRepo)
 
 	llmClient := llm.New()
 	synth := pipeline.NewSynthesizer(llmClient)
@@ -66,4 +69,6 @@ func main() {
 			slog.Warn("blip: zero guarantees returned, previous file preserved", "service", svc.Key())
 		}
 	}
+
+	gitops.CommitAndPush(cfg.OutputDir, "update expectations")
 }

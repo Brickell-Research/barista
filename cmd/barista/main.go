@@ -8,6 +8,7 @@ import (
 	"github.com/hibiken/asynq"
 
 	"barista/internal/config"
+	"barista/internal/gitops"
 	"barista/internal/llm"
 	"barista/internal/worker"
 )
@@ -23,6 +24,8 @@ func main() {
 		slog.Error("failed to load config", "err", err)
 		os.Exit(1)
 	}
+
+	gitops.EnsureRepo(cfg.OutputDir, cfg.OutputRepo)
 
 	redisOpt := asynq.RedisClientOpt{Addr: parseRedisAddr(redisURL)}
 	llmClient := llm.New()

@@ -23,8 +23,9 @@ type Provider struct {
 }
 
 type Config struct {
-	Providers []Provider `yaml:"providers"`
-	OutputDir string     `yaml:"output_dir"`
+	Providers  []Provider `yaml:"providers"`
+	OutputDir  string     `yaml:"output_dir"`
+	OutputRepo string     `yaml:"output_repo"`
 }
 
 func Load(path string) (*Config, error) {

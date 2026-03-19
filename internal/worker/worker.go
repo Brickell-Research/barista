@@ -10,6 +10,7 @@ import (
 
 	"barista/internal/config"
 	"barista/internal/fetcher"
+	"barista/internal/gitops"
 	"barista/internal/llm"
 	"barista/internal/pipeline"
 )
@@ -89,6 +90,7 @@ func (h *Handler) HandleExplore(ctx context.Context, t *asynq.Task) error {
 	switch result.Status {
 	case pipeline.StatusWritten:
 		slog.Info("written", "service", svc.Key(), "path", result.Path)
+		gitops.CommitAndPush(h.cfg.OutputDir, fmt.Sprintf("update %s expectations", svc.Key()))
 	case pipeline.StatusUnchanged:
 		slog.Info("unchanged", "service", svc.Key())
 	case pipeline.StatusBlip:

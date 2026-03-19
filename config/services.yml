@@ -1,3 +1,6 @@
+# output_dir: output
+# output_repo: git@github.com:your-org/your-expectations-repo.git
+
 providers:
   - name: stripe
     services:
