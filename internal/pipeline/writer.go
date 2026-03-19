@@ -1,7 +1,9 @@
 package pipeline
 
 import (
+	"errors"
 	"fmt"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"strings"
@@ -37,7 +39,7 @@ func Write(outputDir string, i *Intermediate, content string) (WriteResult, erro
 	changelogPath := filepath.Join(dir, i.ServiceName+".changelog")
 
 	existing, err := os.ReadFile(filePath)
-	if err != nil && !os.IsNotExist(err) {
+	if err != nil && !errors.Is(err, fs.ErrNotExist) {
 		return WriteResult{}, fmt.Errorf("read existing file: %w", err)
 	}
 
