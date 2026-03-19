@@ -27,11 +27,23 @@ module Barista
       def explore_service(service_key)
         parsed = Providers::Service.parse_key(service_key)
         service = find_service(parsed[:provider_name], parsed[:service_name])
-        return unless service
 
+        unless service
+          logger.warn("Unknown service key: #{service_key}")
+          return
+        end
+
+        logger.info("[#{service_key}] Fetching SLA from #{service.url}")
         content = Fetcher.fetch(service.url)
-        caffeine = Synthesizer.synthesize(service: service, content: content)
-        CaffeineWriter.write(service: service, content: caffeine)
+
+        logger.info("[#{service_key}] Synthesizing guarantees (#{content.length} bytes)")
+        intermediate = Synthesizer.synthesize(service:, content:)
+
+        logger.info("[#{service_key}] Found #{intermediate.guarantees.size} guarantee(s)")
+        caffeine = Translator.translate(intermediate)
+
+        path = CaffeineWriter.write(service:, content: caffeine)
+        logger.info("[#{service_key}] Wrote #{path}")
       end
 
       def find_service(provider_name, service_name)
@@ -40,9 +52,9 @@ module Barista
       end
 
       def discover_and_enqueue_services
-        discovered_services.each do |key|
-          self.class.perform_async(key)
-        end
+        keys = discovered_services
+        logger.info("Enqueuing #{keys.size} service exploration job(s)")
+        keys.each { |key| self.class.perform_async(key) }
       end
 
       def discovered_services

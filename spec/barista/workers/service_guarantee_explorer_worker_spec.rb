@@ -46,24 +46,32 @@ RSpec.describe Barista::Workers::ServiceGuaranteeExplorerWorker do
 
   context "when called with a service key" do
     let(:dir) { Dir.mktmpdir }
+    let(:service) do
+      Barista::Providers::Service.new(provider_name: "aws", name: "s3", url: "https://aws.example.com/s3/sla")
+    end
+    let(:intermediate) do
+      Barista::Intermediate.new(
+        service_name: "s3",
+        provider_name: "aws",
+        source_url: "https://aws.example.com/s3/sla",
+        guarantees: [Barista::Guarantee.new(name: "monthly_uptime_percentage", threshold: 99.9, window_days: 30)]
+      )
+    end
 
     before do
       Barista.configure(
         Barista::Configuration.new(
           output_dir: dir,
           providers: [
-            Barista::Providers::Provider.new(
-              name: "aws",
-              services: [
-                Barista::Providers::Service.new(provider_name: "aws", name: "s3", url: "https://aws.example.com/s3/sla")
-              ]
-            )
+            Barista::Providers::Provider.new(name: "aws", services: [service])
           ]
         )
       )
 
       stub_request(:get, "https://aws.example.com/s3/sla")
         .to_return(status: 200, body: "<html>S3 SLA</html>")
+
+      allow(Barista::Synthesizer).to receive(:synthesize).and_return(intermediate)
     end
 
     after { FileUtils.rm_rf(dir) }
@@ -73,10 +81,19 @@ RSpec.describe Barista::Workers::ServiceGuaranteeExplorerWorker do
       expect(File.exist?(File.join(dir, "expectations", "s3.caffeine"))).to be(true)
     end
 
-    it "generates content containing the service name" do
+    it "writes valid Caffeine content" do
       described_class.new.perform("aws/s3")
       content = File.read(File.join(dir, "expectations", "s3.caffeine"))
-      expect(content).to include('expectation "s3"')
+      expect(content).to include("Unmeasured Expectations")
+      expect(content).to include('* "monthly_uptime_percentage"')
+      expect(content).to include("threshold: 99.9%")
+    end
+
+    context "when the service key is unknown" do
+      it "does not raise and does not write a file" do
+        described_class.new.perform("aws/unknown")
+        expect(File.exist?(File.join(dir, "expectations", "unknown.caffeine"))).to be(false)
+      end
     end
   end
 end
