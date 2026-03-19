@@ -1,5 +1,5 @@
-# service_guarantee_exploration:
-#   cron: "0 */6 * * *"
-#   class: Barista::Workers::ServiceGuaranteeExplorerWorker
-#   queue: exploration
-#   description: "Discover and explore third-party service guarantees"
+service_guarantee_exploration:
+  cron: "0 * * * *"
+  class: Barista::Workers::ServiceGuaranteeExplorerWorker
+  queue: exploration
+  description: "Discover and explore third-party service guarantees"
