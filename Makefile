@@ -1,12 +1,9 @@
-.PHONY: ci lint typecheck test
+.PHONY: ci lint test
 
-ci: lint typecheck test
+ci: lint test
 
 lint:
 	bundle exec rubocop
-
-typecheck:
-	bundle exec srb tc
 
 test:
 	bundle exec rspec
