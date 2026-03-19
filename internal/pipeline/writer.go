@@ -120,7 +120,8 @@ func formatCaffeine(content string) string {
 	}
 
 	formatted, err := os.ReadFile(tmp.Name())
-	if err != nil {
+	if err != nil || len(formatted) == 0 {
+		slog.Warn("caffeine format produced no output, using original")
 		return content
 	}
 	return string(formatted)

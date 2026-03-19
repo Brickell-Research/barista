@@ -56,16 +56,16 @@ func CommitAndPush(dir, msg string) {
 	mu.Lock()
 	defer mu.Unlock()
 
-	out, err := git(dir, "status", "--porcelain", "--", "**/*.changelog")
+	out, err := git(dir, "status", "--porcelain", ".")
 	if err != nil {
 		slog.Warn("gitops: git status failed", "err", err, "output", string(out))
 		return
 	}
 	if strings.TrimSpace(string(out)) == "" {
-		return // no changelog changes
+		return // nothing to commit
 	}
 
-	if out, err := git(dir, "add", "--", "**/*.changelog"); err != nil {
+	if out, err := git(dir, "add", "."); err != nil {
 		slog.Warn("gitops: git add failed", "err", err, "output", string(out))
 		return
 	}
