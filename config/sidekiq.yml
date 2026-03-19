@@ -1,5 +1,0 @@
----
-:queues:
-  - exploration
-:concurrency: 5
-:require: ./bin/barista

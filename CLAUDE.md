@@ -5,15 +5,21 @@ Automated explorer for discovering and structuring third-party service guarantee
 ## Commands
 
 - `make ci` — runs lint and test
-- `bundle exec rubocop` — lint
-- `bundle exec rspec` — test
-- `bundle exec sidekiq -C ./config/sidekiq.yml` — start workers (requires Redis)
+- `go vet ./...` — lint
+- `go test ./...` — test
+- `go run ./cmd/barista` — start worker (requires Redis)
+- `go run ./cmd/explore [provider/service]` — run exploration locally without Redis
 
-## Sidekiq
+## Worker Queue
 
-Use `Sidekiq::Job` (not `Sidekiq::Worker`). Keep `perform` args JSON-serializable (String, Integer, Float, Boolean, nil, Array, Hash).
+Uses [asynq](https://github.com/hibiken/asynq) (Redis-backed). Two task types:
+- `barista:discover` — fan-out job; enqueues one `barista:explore` per configured service
+- `barista:explore` — fetches docs, calls LLM, writes `.caffeine` output file
+
+Task payloads must be JSON-serializable structs.
 
 ## Style
 
-- Ruby 3.4, double quotes, 120-char line limit
-- `# frozen_string_literal: true` in every file
+- Go 1.23
+- Module path: `barista`
+- Standard library `log/slog` for structured logging

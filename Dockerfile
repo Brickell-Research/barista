@@ -1,17 +1,22 @@
-FROM ruby:3.4.1-slim
+FROM golang:1.23-alpine AS builder
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-  build-essential \
-  && rm -rf /var/lib/apt/lists/*
-
-COPY Gemfile Gemfile.lock ./
-RUN bundle config set --local without "development test" \
-  && bundle install --jobs 4 --retry 3
+COPY go.mod go.sum ./
+RUN go mod download
 
 COPY . .
+RUN go build -o /barista ./cmd/barista
+
+FROM alpine:3.21
+
+RUN apk add --no-cache ca-certificates
+
+WORKDIR /app
+
+COPY --from=builder /barista /barista
+COPY config/ config/
 
 RUN mkdir -p output/expectations
 
-CMD ["bundle", "exec", "sidekiq", "-C", "./config/sidekiq.yml"]
+CMD ["/barista"]

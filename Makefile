@@ -1,9 +1,18 @@
-.PHONY: ci lint test
+.PHONY: ci build test lint
 
 ci: lint test
 
-lint:
-	bundle exec rubocop
+build:
+	go build ./...
 
 test:
-	bundle exec rspec
+	go test ./...
+
+lint:
+	go vet ./...
+
+run/worker:
+	go run ./cmd/barista
+
+run/explore:
+	go run ./cmd/explore $(SERVICE)
