@@ -1,0 +1,10 @@
+.git
+.env
+.env.*
+output/
+spec/
+sorbet/
+coverage/
+*.log
+*.md
+.DS_Store

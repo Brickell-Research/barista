@@ -1,0 +1,19 @@
+services:
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+  worker:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      - redis
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+    volumes:
+      - output:/app/output
+      - ./config/services.yml:/app/config/services.yml:ro
+
+volumes:
+  output:
