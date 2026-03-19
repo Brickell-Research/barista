@@ -1,9 +1,8 @@
 plugins:
   - rubocop-rspec
-  - rubocop-sorbet
 
 AllCops:
-  TargetRubyVersion: 4.0
+  TargetRubyVersion: 3.4
   NewCops: enable
   SuggestExtensions: false
 
@@ -15,13 +14,3 @@ Style/StringLiterals:
 
 Layout/LineLength:
   Max: 120
-
-Sorbet/StrictSigil:
-  Enabled: true
-  Include:
-    - "lib/**/*.rb"
-
-Sorbet/FalseSigil:
-  Enabled: true
-  Include:
-    - "spec/**/*.rb"

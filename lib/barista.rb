@@ -1,4 +1,3 @@
-# typed: strict
 # frozen_string_literal: true
 
 require_relative "barista/providers/service"
@@ -14,15 +13,11 @@ module Barista
   # Namespace for Sidekiq job classes.
   module Workers; end
 
-  extend T::Sig
-
-  sig { returns(Configuration) }
   def self.configuration
-    @configuration ||= T.let(Configuration.load, T.nilable(Configuration))
+    @configuration ||= Configuration.load
   end
 
-  sig { params(config: Configuration).void }
   def self.configure(config)
-    @configuration = T.let(config, T.nilable(Configuration))
+    @configuration = config
   end
 end

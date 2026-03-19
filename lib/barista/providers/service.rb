@@ -1,27 +1,22 @@
-# typed: strict
 # frozen_string_literal: true
-
-require "sorbet-runtime"
 
 module Barista
   module Providers
     # A single service offered by a provider (e.g. S3 under AWS).
-    class Service < T::Struct
-      const :provider_name, String
-      const :name, String
-      const :url, String
+    class Service
+      attr_reader :provider_name, :name, :url
 
-      extend T::Sig
-
-      sig { returns(String) }
-      def key
-        "#{provider_name}/#{name}"
+      def initialize(provider_name:, name:, url:)
+        @provider_name = provider_name
+        @name = name
+        @url = url
       end
 
-      sig { params(key: String).returns({ provider_name: String, service_name: String }) }
+      def key = "#{provider_name}/#{name}"
+
       def self.parse_key(key)
         provider_name, service_name = key.split("/", 2)
-        { provider_name: T.must(provider_name), service_name: T.must(service_name) }
+        { provider_name:, service_name: }
       end
     end
   end
