@@ -8,27 +8,27 @@ Every service you depend on publishes guarantees. Barista makes them machine-rea
 
 ## Development
 
-**Requires Ruby [4.0](https://www.ruby-lang.org/en/news/2025/12/25/ruby-4-0-0-released/)**.
+**Requires Go 1.23+**.
 
 ```sh
-bundle exec rspec
+go test ./...
 ```
 
 ## Running Workers
 
-Start Redis, then boot Sidekiq:
+Start Redis, then boot the worker:
 
 ```sh
 redis-server &
-bundle exec sidekiq -C ./config/sidekiq.yml
+go run ./cmd/barista
 ```
 
-Sidekiq connects to `REDIS_URL` (defaults to `redis://localhost:6379/0`). Cron schedules are loaded automatically on startup from `config/schedule.yml`.
+Connects to `REDIS_URL` (defaults to `redis://localhost:6379/0`). Runs an hourly cron to discover and explore all configured services.
 
 ## Local Execution
 
-```
-ANTHROPIC_API_KEY=_____________ bundle exec ruby bin/explore aws/s3
+```sh
+ANTHROPIC_API_KEY=_____________ go run ./cmd/explore aws/s3
 ```
 
 ## License
