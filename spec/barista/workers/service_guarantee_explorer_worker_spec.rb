@@ -84,9 +84,9 @@ RSpec.describe Barista::Workers::ServiceGuaranteeExplorerWorker do
     it "writes valid Caffeine content" do
       described_class.new.perform("aws/s3")
       content = File.read(File.join(dir, "expectations", "s3.caffeine"))
-      expect(content).to include("Unmeasured Expectations")
-      expect(content).to include('* "monthly_uptime_percentage"')
-      expect(content).to include("threshold: 99.9%")
+      expect(content).to include("Expectations")
+      expect(content).to include('"monthly_uptime_percentage"')
+      expect(content).to include("Guarantees 99.9% over 30d window")
     end
 
     context "when the service key is unknown" do

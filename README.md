@@ -25,6 +25,12 @@ bundle exec sidekiq -C ./config/sidekiq.yml
 
 Sidekiq connects to `REDIS_URL` (defaults to `redis://localhost:6379/0`). Cron schedules are loaded automatically on startup from `config/schedule.yml`.
 
+## Local Execution
+
+```
+ANTHROPIC_API_KEY=_____________ bundle exec ruby bin/explore aws/s3
+```
+
 ## License
 
 GPL-3.0

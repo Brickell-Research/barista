@@ -15,8 +15,13 @@ module Barista
         system: Prompts::SlaExtraction::SYSTEM,
         messages: [{ role: "user", content: Prompts::SlaExtraction.user(service:, content:) }]
       )
-      JSON.parse(response.content.first.text)
+      JSON.parse(strip_code_fences(response.content.first.text))
     end
+
+    def self.strip_code_fences(text)
+      text.strip.sub(/\A```(?:json)?\n?/, "").sub(/\n?```\z/, "")
+    end
+    private_class_method :strip_code_fences
 
     def self.build_client
       Anthropic::Client.new

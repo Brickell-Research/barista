@@ -16,24 +16,20 @@ RSpec.describe Barista::Translator do
   describe ".translate" do
     subject(:output) { described_class.translate(intermediate) }
 
-    it "opens with the Unmeasured Expectations header" do
-      expect(output).to start_with("Unmeasured Expectations")
+    it "opens with the Expectations header" do
+      expect(output).to start_with("Expectations")
     end
 
     it "includes the guarantee name" do
-      expect(output).to include('* "monthly_uptime_percentage"')
+      expect(output).to include('"monthly_uptime_percentage"')
     end
 
-    it "formats the threshold as a percentage" do
-      expect(output).to include("threshold: 99.9%")
+    it "formats the guarantee as a Guarantees clause" do
+      expect(output).to include("Guarantees 99.9% over 30d window")
     end
 
-    it "includes the window" do
-      expect(output).to include("window_in_days: 30")
-    end
-
-    it "produces a valid Provides block" do
-      expect(output).to include("    Provides {\n      threshold: 99.9%,\n      window_in_days: 30\n    }")
+    it "indents the Guarantees clause under the name" do
+      expect(output).to include("\"monthly_uptime_percentage\":\n  Guarantees 99.9% over 30d window")
     end
 
     context "with multiple guarantees" do
@@ -50,12 +46,12 @@ RSpec.describe Barista::Translator do
       end
 
       it "includes all guarantees" do
-        expect(output).to include('* "standard_availability"')
-        expect(output).to include('* "reduced_redundancy"')
+        expect(output).to include('"standard_availability"')
+        expect(output).to include('"reduced_redundancy"')
       end
 
       it "formats whole-number thresholds without a decimal" do
-        expect(output).to include("threshold: 99%")
+        expect(output).to include("Guarantees 99% over 30d window")
       end
     end
 
@@ -69,8 +65,8 @@ RSpec.describe Barista::Translator do
         )
       end
 
-      it "does not include the Unmeasured Expectations header" do
-        expect(output).not_to include("Unmeasured Expectations")
+      it "does not include the Expectations header" do
+        expect(output).not_to include("Expectations")
       end
 
       it "includes a comment with the service key" do

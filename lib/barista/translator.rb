@@ -1,20 +1,17 @@
 # frozen_string_literal: true
 
 module Barista
-  # Translates an Intermediate into a valid Caffeine Unmeasured Expectations string.
+  # Translates an Intermediate into a valid Caffeine v6 expectations string.
   module Translator
     def self.translate(intermediate)
       return empty_file(intermediate) if intermediate.guarantees.empty?
 
-      lines = ["Unmeasured Expectations"]
+      lines = ["Expectations"]
 
       intermediate.guarantees.each do |guarantee|
         lines << ""
-        lines << "  * \"#{guarantee.name}\":"
-        lines << "    Provides {"
-        lines << "      threshold: #{format_threshold(guarantee.threshold)},"
-        lines << "      window_in_days: #{guarantee.window_days}"
-        lines << "    }"
+        lines << "\"#{guarantee.name}\":"
+        lines << "  Guarantees #{format_threshold(guarantee.threshold)}% over #{guarantee.window_days}d window"
       end
 
       lines << ""
@@ -23,7 +20,7 @@ module Barista
 
     def self.format_threshold(threshold)
       int = threshold.to_i
-      "#{threshold == int ? int : threshold}%"
+      threshold == int ? int : threshold
     end
     private_class_method :format_threshold
 

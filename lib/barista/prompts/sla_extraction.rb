@@ -23,7 +23,7 @@ module Barista
         - threshold is a Float (e.g. 99.9, not "99.9%")
         - window_days is an Integer representing the SLA measurement window in days
         - If no guarantees are found, return {"guarantees": []}
-        - Return only the JSON object, no preamble or explanation
+        - Return only the raw JSON object, no preamble, explanation, or code fences
       PROMPT
 
       def self.user(service:, content:)
