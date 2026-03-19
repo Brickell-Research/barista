@@ -34,3 +34,5 @@ Thumbs.db
 /sorbet/rbi/hidden-definitions/
 /sorbet/rbi/sorbet-typed/
 /sorbet/rbi/todo.rbi
+
+output/*

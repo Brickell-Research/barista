@@ -4,7 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"io/fs"
+	"log/slog"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strings"
 	"time"
@@ -34,6 +36,8 @@ func Write(outputDir string, i *Intermediate, content string) (WriteResult, erro
 	if err := os.MkdirAll(dir, 0755); err != nil {
 		return WriteResult{}, fmt.Errorf("create output dir: %w", err)
 	}
+
+	content = formatCaffeine(content)
 
 	filePath := filepath.Join(dir, i.ServiceName+".caffeine")
 	changelogPath := filepath.Join(dir, i.ServiceName+".changelog")
@@ -82,7 +86,39 @@ func Write(outputDir string, i *Intermediate, content string) (WriteResult, erro
 }
 
 func isNoGuarantees(content string) bool {
-	return strings.HasPrefix(strings.TrimSpace(content), "#")
+	return strings.HasPrefix(strings.TrimSpace(content), "# No guarantees found")
+}
+
+// formatCaffeine passes content through `caffeine format` and returns the
+// result. If the binary is not available or formatting fails, the original
+// content is returned unchanged.
+func formatCaffeine(content string) string {
+	bin, err := exec.LookPath("caffeine")
+	if err != nil {
+		return content
+	}
+
+	tmp, err := os.CreateTemp("", "barista-*.caffeine")
+	if err != nil {
+		return content
+	}
+	defer os.Remove(tmp.Name())
+
+	if _, err := tmp.WriteString(content); err != nil {
+		return content
+	}
+	tmp.Close()
+
+	if out, err := exec.Command(bin, "format", tmp.Name()).CombinedOutput(); err != nil {
+		slog.Warn("caffeine format failed", "err", err, "output", string(out))
+		return content
+	}
+
+	formatted, err := os.ReadFile(tmp.Name())
+	if err != nil {
+		return content
+	}
+	return string(formatted)
 }
 
 // logChangelog appends a changelog entry, logging to stderr on failure
